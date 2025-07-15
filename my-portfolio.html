@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Makanjuola - Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                        secondary: '#bd93f9'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'crimson': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-item {
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0);
+            }
+
+            75% {
+                transform: translateY(10px) rotate(-2deg);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .certificate-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Theme Variables */
+        :root {
+            --bg-primary: #fefefe;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --nav-bg: #2c3e50;
+            --nav-text: #ffffff;
+            --nav-border: #34495e;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --accent-color: #bd93f9;
+            --paper-texture: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix in="colorNoise" type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" fill="white"/><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.03"/></svg>');
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --nav-bg: #000000;
+            --nav-text: #ffffff;
+            --nav-border: #374151;
+            --card-bg: #2d2d2d;
+            --border-color: #374151;
+            --accent-color: #bd93f9;
+            --paper-texture: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix in="colorNoise" type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" fill="%23000000"/><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+        }
+
+        /* Theme Classes */
+        .theme-bg {
+            background-color: var(--bg-primary);
+        }
+
+        .theme-bg-secondary {
+            background-color: var(--bg-secondary);
+        }
+
+        .theme-text {
+            color: var(--text-primary);
+        }
+
+        .theme-text-secondary {
+            color: var(--text-secondary);
+        }
+
+        .nav-bg {
+            background-color: var(--nav-bg);
+        }
+
+        .nav-text {
+            color: var(--nav-text);
+        }
+
+        .nav-border {
+            border-color: var(--nav-border);
+        }
+
+        .card-bg {
+            background-color: var(--card-bg);
+        }
+
+        .theme-border {
+            border-color: var(--border-color);
+        }
+
+        .theme-toggle-btn {
+            background: rgba(189, 147, 249, 0.1);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(189, 147, 249, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Classical Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #bd93f9;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #bd93f9;
+            }
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .elegant-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .elegant-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .vintage-border {
+            position: relative;
+        }
+
+        .vintage-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #bd93f9, #ff79c6, #50fa7b, #8be9fd);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vintage-border:hover::before {
+            opacity: 1;
+        }
+
+        /* Paper Texture Background */
+        .paper-texture {
+            background-image: var(--paper-texture);
+            background-size: 200px 200px;
+            position: relative;
+        }
+
+        .paper-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(139, 69, 19, 0.02) 50%, transparent 51%);
+            pointer-events: none;
+        }
+
+        /* Classical Typography */
+        .classical-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .classical-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Ornamental Dividers */
+        .ornamental-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4rem 0;
+            opacity: 0.6;
+        }
+
+        .ornamental-divider::before,
+        .ornamental-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+
+        .ornamental-divider svg {
+            margin: 0 2rem;
+            fill: var(--accent-color);
+            opacity: 0.8;
+        }
+
+        /* Ink Blot Effects */
+        .ink-blot {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ink-blot::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .ink-blot:hover::before {
+            opacity: 0.1;
+            transform: scale(1);
+        }
+
+        /* Vintage Paper Card */
+        .vintage-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 0;
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .vintage-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--accent-color);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Classical Button Styling */
+        .classical-btn {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+            border: 2px solid var(--accent-color);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .classical-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(189, 147, 249, 0.3);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #ff79c6);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        /* Enhanced Typewriter with Ink Effect */
+        .typewriter-ink {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .typewriter-ink::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-color);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+    </style>
+</head>
+
+<body class="theme-bg theme-text smooth-scroll transition-all duration-300 paper-texture">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scroll-indicator"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-bg shadow-lg border-b nav-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="font-bold text-3xl nav-text font-['Pacifico']">Emmanuel</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-text hover:text-[#bd93f9] transition-colors">Home</a>
+                    <a href="#projects" class="nav-text hover:text-[#bd93f9] transition-colors">Projects</a>
+                    <a href="#achievements" class="nav-text hover:text-[#bd93f9] transition-colors">Achievements</a>
+                    <a href="#skills" class="nav-text hover:text-[#bd93f9] transition-colors">Skills</a>
+                    <a href="#about" class="nav-text hover:text-[#bd93f9] transition-colors">About</a>
+                    <a href="#contact" class="nav-text hover:text-[#bd93f9] transition-colors">Contact</a>
+                    <!-- Theme Switcher -->
+                    <div class="flex items-center ml-4">
+                        <button id="theme-toggle"
+                            class="theme-toggle-btn p-2 rounded-full transition-all duration-300 hover:scale-110">
+                            <i id="theme-icon" class="ri-moon-line text-xl nav-text"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 md:hidden">
+                    <!-- Mobile Theme Toggle -->
+                    <button id="mobile-theme-toggle"
+                        class="theme-toggle-btn p-2 rounded-full transition-all duration-300">
+                        <i id="mobile-theme-icon" class="ri-moon-line text-lg nav-text"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-menu-line text-xl nav-text"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden card-bg border-t theme-border transition-all duration-300">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">Home</a>
+                <a href="#projects" class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">Projects</a>
+                <a href="#achievements"
+                    class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">Achievements</a>
+                <a href="#skills" class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">Skills</a>
+                <a href="#about" class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">About</a>
+                <a href="#contact" class="block py-2 theme-text hover:text-[#bd93f9] transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[#282a36]"></div>
+        <div class="absolute inset-0 bg-blend-overlay"
+            style="background-image: url('https://readdy.ai/api/search-image?query=Dark%20cyberpunk%20themed%20workspace%20with%20neon%20purple%20and%20blue%20accents%2C%20floating%20holographic%20code%20fragments%2C%20abstract%20digital%20patterns%2C%20dramatic%20lighting%20with%20deep%20shadows%20and%20vibrant%20accent%20lights%2C%20mysterious%20and%20professional%20dracula%20theme%20atmosphere&width=1920&height=1080&seq=hero3&orientation=landscape'); background-size: cover; background-position: center; opacity: 0.3;">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#282a36] via-[#282a36]/80 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div class="relative z-10 text-[#f8f8f2] max-w-2xl" data-aos="fade-right">
+                <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                    Hi, I'm <span class="text-[#bd93f9] font-['Pacifico']">Emmanuel</span>
+                </h1>
+                <p class="text-2xl md:text-3xl mb-8 text-[#f8f8f2] font-light">
+                    Backend Developer & Software Engineer
+                </p>
+                <p class="text-lg md:text-xl mb-12 text-gray-300 leading-relaxed">
+                    Crafting robust, scalable backend solutions with modern technologies.
+                    Passionate about clean code and system architecture.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projects"
+                        class="bg-[#bd93f9] hover:bg-[#bd93f9]/80 text-[#282a36] px-8 py-4 !rounded-button font-medium transition-all duration-300 whitespace-nowrap">
+                        View My Work
+                    </a>
+                    <a href="#contact"
+                        class="border-2 border-[#bd93f9] text-[#bd93f9] hover:bg-[#bd93f9] hover:text-[#282a36] px-8 py-4 !rounded-button font-medium transition-all duration-300 whitespace-nowrap">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            <div class="relative z-10 hidden lg:block w-[500px] h-[500px]" data-aos="fade-left">
+                <div
+                    class="absolute right-[30px] w-[400px] h-[400px] rounded-full border-2 border-[#bd93f9] animate-[spin_20s_linear_infinite]">
+                </div>
+                <div class="absolute right-[30px] w-[400px] h-[400px] rounded-full border-2 border-[#ff79c6] animate-[spin_15s_linear_infinite_reverse]"
+                    style="transform: rotate(45deg)"></div>
+                <div class="absolute right-[30px] w-[300px] h-[300px] mt-[50px] mr-[50px] animate-float">
+                    <img src="https://readdy.ai/api/search-image?query=Anime%20style%20portrait%20of%20a%20young%20professional%20male%20developer%2C%20digital%20art%2C%20cyberpunk%20theme%2C%20neon%20lighting%2C%20detailed%20character%20design%2C%20purple%20and%20blue%20color%20scheme%2C%20dracula%20theme%20inspired&width=600&height=600&seq=hero4&orientation=squarish"
+                        alt="Animated Developer"
+                        class="w-full h-full object-cover rounded-full border-4 border-[#bd93f9] shadow-lg shadow-[#bd93f9]/20 hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Ornamental Divider -->
+    <div class="ornamental-divider">
+        <svg width="60" height="20" viewBox="0 0 60 20">
+            <path d="M5,10 Q15,2 25,10 T45,10 Q50,8 55,10" stroke="currentColor" stroke-width="1" fill="none" />
+            <circle cx="30" cy="10" r="3" fill="currentColor" />
+            <circle cx="10" cy="10" r="1.5" fill="currentColor" />
+            <circle cx="50" cy="10" r="1.5" fill="currentColor" />
+        </svg>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 theme-bg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="fade-in-up ink-blot">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text classical-heading typewriter-ink">About
+                        Me</h2>
+                    <p class="classical-text mb-6 leading-relaxed elegant-hover">
+                        I'm a passionate Backend Developer with over 2 years of experience building scalable web
+                        applications and APIs.
+                        My journey in software development started with a curiosity about how things work behind the
+                        scenes,
+                        and it has evolved into a deep passion for creating robust, efficient systems.
+                    </p>
+                    <p class="classical-text mb-6 leading-relaxed elegant-hover">
+                        I specialize in Node.js, Python, and cloud technologies, with a strong focus on clean code,
+                        system architecture, and performance optimization. When I'm not coding, you'll find me exploring
+                        new technologies, contributing to open-source projects, or mentoring aspiring developers.
+                    </p>
+                    <p class="classical-text mb-8 leading-relaxed elegant-hover">
+                        I believe in the power of technology to solve real-world problems and am always excited to work
+                        on projects that make a positive impact on people's lives.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2 classical-text vintage-card p-3">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-map-pin-line text-[#bd93f9]"></i>
+                            </div>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                        <div class="flex items-center gap-2 classical-text vintage-card p-3">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-graduation-cap-line text-[#bd93f9]"></i>
+                            </div>
+                            <span>Computer Science Graduate</span>
+                        </div>
+                        <div class="flex items-center gap-2 classical-text vintage-card p-3">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-briefcase-line text-[#bd93f9]"></i>
+                            </div>
+                            <span>2+ Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div class="w-full max-w-md mx-auto">
+                        <div class="relative">
+                            <div class="w-full h-96 bg-gray-100 rounded-3xl overflow-hidden shadow-2xl">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20African%20male%20software%20developer%20portrait%2C%20confident%20smile%2C%20modern%20office%20background%2C%20clean%20business%20casual%20attire%2C%20professional%20headshot%2C%20tech%20industry%20professional&width=400&height=500&seq=profile1&orientation=portrait"
+                                    alt="Emmanuel Makanjuola" class="w-full h-full object-cover object-top">
+                            </div>
+                            <div
+                                class="absolute -bottom-6 -right-6 w-24 h-24 bg-primary rounded-full flex items-center justify-center floating">
+                                <i class="ri-code-s-slash-line text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Ornamental Divider -->
+    <div class="ornamental-divider">
+        <svg width="80" height="25" viewBox="0 0 80 25">
+            <path d="M10,12.5 Q20,5 30,12.5 T50,12.5 Q60,5 70,12.5" stroke="currentColor" stroke-width="1.5"
+                fill="none" />
+            <path d="M5,12.5 L15,12.5 M65,12.5 L75,12.5" stroke="currentColor" stroke-width="1" />
+            <circle cx="40" cy="12.5" r="4" fill="currentColor" />
+            <circle cx="20" cy="12.5" r="2" fill="currentColor" />
+            <circle cx="60" cy="12.5" r="2" fill="currentColor" />
+        </svg>
+    </div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 theme-bg-secondary transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up ink-blot" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text classical-heading typewriter-ink">Featured
+                    Projects</h2>
+                <p class="text-xl classical-text max-w-2xl mx-auto">
+                    A showcase of my recent work in backend development and full-stack applications
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card vintage-card p-8 shadow-lg hover:shadow-2xl transition-all duration-300 elegant-hover ink-blot"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl mb-6 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Modern%20e-commerce%20API%20dashboard%20interface%2C%20clean%20design%20with%20data%20visualization%2C%20charts%20and%20graphs%2C%20professional%20backend%20system%2C%20blue%20and%20white%20color%20scheme%2C%20minimalist%20tech%20aesthetic&width=400&height=300&seq=project1&orientation=landscape"
+                            alt="E-commerce API" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">E-commerce REST API</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Comprehensive e-commerce backend with user authentication, product management, order processing,
+                        and payment integration using Node.js and MongoDB.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Express</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">JWT</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-github-line"></i>
+                            </div>
+                            GitHub
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-external-link-line"></i>
+                            </div>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl mb-6 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Real-time%20chat%20application%20interface%2C%20modern%20messaging%20system%2C%20WebSocket%20connections%20visualization%2C%20clean%20UI%20with%20message%20bubbles%2C%20professional%20communication%20platform%20design&width=400&height=300&seq=project2&orientation=landscape"
+                            alt="Real-time Chat App" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Real-time Chat Application</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        WebSocket-based chat application with real-time messaging, user presence, file sharing, and room
+                        management built with Socket.io and React.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Socket.io</span>
+                        <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Redis</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-github-line"></i>
+                            </div>
+                            GitHub
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-external-link-line"></i>
+                            </div>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-full h-48 bg-gray-100 rounded-xl mb-6 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Task%20management%20system%20dashboard%2C%20project%20tracking%20interface%2C%20Kanban%20board%20layout%2C%20productivity%20app%20design%2C%20organized%20workflow%20visualization%2C%20modern%20project%20management%20tool&width=400&height=300&seq=project3&orientation=landscape"
+                            alt="Task Management API" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Task Management System</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Comprehensive project management API with team collaboration, task tracking, deadline
+                        management, and reporting features using Python Django.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Django</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Celery</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-github-line"></i>
+                            </div>
+                            GitHub
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-blue-600 transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-external-link-line"></i>
+                            </div>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add between sections -->
+    <div class="section-divider"></div>
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Achievements & Recognition</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Celebrating milestones and recognitions in my development journey
+                </p>
+            </div>
+            <!-- Achievement Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text counter" data-target="1">0</div>
+                    <p class="text-gray-600 mt-2">Hackathon Won</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text counter" data-target="3">0</div>
+                    <p class="text-gray-600 mt-2">Certificates</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text counter" data-target="15">0</div>
+                    <p class="text-gray-600 mt-2">Projects Completed</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text counter" data-target="2">0</div>
+                    <p class="text-gray-600 mt-2">Years Experience</p>
+                </div>
+            </div>
+            <!-- Hackathon Winner Card -->
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="achievement-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                    <div class="absolute top-4 right-4">
+                        <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <i class="ri-trophy-fill text-2xl text-yellow-800"></i>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                                    <i class="ri-code-s-slash-line text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold">TechCrunch Hackathon 2024</h3>
+                                    <p class="text-primary font-semibold">First Place Winner</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Won first place in the annual TechCrunch Hackathon with an innovative fintech solution
+                                that streamlines micro-lending processes using blockchain technology and AI-driven risk
+                                assessment.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Blockchain</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">AI/ML</span>
+                                <span
+                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">React</span>
+                            </div>
+                            <p class="text-sm text-gray-500">March 2024 • San Francisco, CA</p>
+                        </div>
+                        <div class="w-full h-64 bg-gray-100 rounded-2xl overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Hackathon%20winner%20celebration%2C%20developers%20with%20trophy%2C%20tech%20competition%20award%20ceremony%2C%20coding%20event%20victory%2C%20professional%20achievement%20moment%2C%20modern%20tech%20conference%20setting&width=500&height=400&seq=hackathon1&orientation=landscape"
+                                alt="Hackathon Winner" class="w-full h-full object-cover object-top">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Certificates Grid -->
+            <div class="grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="300">
+                <!-- Certificate 1 -->
+                <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="ri-amazon-line text-2xl text-blue-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">AWS Certified Developer</h4>
+                    <p class="text-gray-600 mb-4">Amazon Web Services</p>
+                    <p class="text-sm text-gray-500 mb-4">
+                        Certified in developing and maintaining applications on AWS platform with expertise in
+                        serverless architecture and cloud services.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Issued: Jan 2024</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-verified-badge-fill text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certificate 2 -->
+                <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="ri-google-line text-2xl text-green-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Google Cloud Professional</h4>
+                    <p class="text-gray-600 mb-4">Google Cloud Platform</p>
+                    <p class="text-sm text-gray-500 mb-4">
+                        Professional certification in designing, building, and managing robust, secure, scalable, and
+                        dynamic solutions on GCP.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Issued: Nov 2023</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-verified-badge-fill text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certificate 3 -->
+                <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="ri-microsoft-line text-2xl text-purple-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Azure Fundamentals</h4>
+                    <p class="text-gray-600 mb-4">Microsoft Azure</p>
+                    <p class="text-sm text-gray-500 mb-4">
+                        Foundational knowledge of cloud services and how those services are provided with Microsoft
+                        Azure platform.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Issued: Sep 2023</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-verified-badge-fill text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Ornamental Divider -->
+    <div class="ornamental-divider">
+        <svg width="70" height="22" viewBox="0 0 70 22">
+            <path d="M8,11 Q18,4 28,11 T48,11 Q58,4 62,11" stroke="currentColor" stroke-width="1.2" fill="none" />
+            <path d="M3,11 L13,11 M57,11 L67,11" stroke="currentColor" stroke-width="0.8" />
+            <circle cx="35" cy="11" r="3.5" fill="currentColor" />
+            <circle cx="18" cy="11" r="1.8" fill="currentColor" />
+            <circle cx="52" cy="11" r="1.8" fill="currentColor" />
+        </svg>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 theme-bg-secondary transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up ink-blot" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text classical-heading typewriter-ink">Technical
+                    Skills</h2>
+                <p class="text-xl classical-text max-w-2xl mx-auto">
+                    A comprehensive toolkit for building modern, scalable applications
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Backend Technologies -->
+                <div data-aos="fade-up" data-aos-delay="100" class="ink-blot">
+                    <h3 class="text-xl font-bold mb-6 text-center classical-heading theme-text">Backend</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-nodejs-line text-green-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Node.js</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-code-line text-blue-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Python</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-database-line text-red-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Django</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-server-line text-gray-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Express.js</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Databases -->
+                <div data-aos="fade-up" data-aos-delay="200" class="ink-blot">
+                    <h3 class="text-xl font-bold mb-6 text-center classical-heading theme-text">Databases</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-database-2-line text-green-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">MongoDB</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-database-line text-blue-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">PostgreSQL</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-database-2-line text-red-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Redis</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-database-line text-orange-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cloud & DevOps -->
+                <div data-aos="fade-up" data-aos-delay="300" class="ink-blot">
+                    <h3 class="text-xl font-bold mb-6 text-center classical-heading theme-text">Cloud & DevOps</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-amazon-line text-orange-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">AWS</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-cloud-line text-blue-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Docker</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-git-branch-line text-purple-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Kubernetes</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-github-line text-gray-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Frontend -->
+                <div data-aos="fade-up" data-aos-delay="400" class="ink-blot">
+                    <h3 class="text-xl font-bold mb-6 text-center classical-heading theme-text">Frontend</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-reactjs-line text-cyan-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">React</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-javascript-line text-yellow-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">JavaScript</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-css3-line text-blue-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">CSS3</span>
+                        </div>
+                        <div class="skill-item vintage-card p-4 shadow-sm flex items-center gap-3 elegant-hover">
+                            <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+                                <i class="ri-tailwind-css-line text-cyan-600"></i>
+                            </div>
+                            <span class="font-medium theme-text">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add between sections -->
+    <div class="section-divider"></div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Let's Work Together</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Ready to bring your ideas to life? Let's discuss your next project and create something amazing
+                    together.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-8">Get In Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                                <i class="ri-mail-line text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:emmanuel.makanjuola@email.com"
+                                    class="text-gray-600 hover:text-primary transition-colors">
+                                    emmanuel.makanjuola@email.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                                <i class="ri-linkedin-line text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">LinkedIn</p>
+                                <a href="https://linkedin.com/in/emmanuel-makanjuola"
+                                    class="text-gray-600 hover:text-primary transition-colors">
+                                    linkedin.com/in/emmanuel-makanjuola
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center">
+                                <i class="ri-github-line text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">GitHub</p>
+                                <a href="https://github.com/emmanuel-makanjuola"
+                                    class="text-gray-600 hover:text-primary transition-colors">
+                                    github.com/emmanuel-makanjuola
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+                                <i class="ri-phone-line text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <a href="tel:+2348123456789" class="text-gray-600 hover:text-primary transition-colors">
+                                    +234 812 345 6789
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-3 border-none bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 border-none bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required
+                                class="w-full px-4 py-3 border-none bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full px-4 py-3 border-none bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:outline-none resize-none text-sm"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-blue-600 text-white py-4 px-6 !rounded-button font-medium transition-all duration-300 whitespace-nowrap">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4 gradient-text">Emmanuel Makanjuola</h3>
+                <p class="text-gray-400 mb-8">Backend Developer & Software Engineer</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://github.com/emmanuel-makanjuola"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                        <i class="ri-github-line"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/emmanuel-makanjuola"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                        <i class="ri-linkedin-line"></i>
+                    </a>
+                    <a href="mailto:emmanuel.makanjuola@email.com"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                        <i class="ri-mail-line"></i>
+                    </a>
+                    <a href="https://twitter.com/emmanuel_codes"
+                        class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 Emmanuel Makanjuola. All rights reserved. Built with passion and modern web technologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+    <script id="smooth-scroll-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                // Smooth scrolling for navigation links
+                const navLinks = document.querySelectorAll('a[href^="#"]');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            const offsetTop = targetSection.offsetTop - 80;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            });
+    </script>
+    <script id="counter-animation-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                const counters = document.querySelectorAll('.counter');
+                const animateCounter = (counter) => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const increment = target / 100;
+                    let current = 0;
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.textContent = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    updateCounter();
+                };
+                // Intersection Observer for counter animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                counters.forEach(counter => {
+                    observer.observe(counter);
+                });
+            });
+    </script>
+    <script id="contact-form-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                const contactForm = document.getElementById('contact-form');
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+                    // Simple validation
+                    if (!name || !email || !subject || !message) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+                    // Simulate form submission
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+                    setTimeout(() => {
+                        alert('Thank you for your message! I\'ll get back to you soon.');
+                        contactForm.reset();
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            });
+    </script>
+    <script id="aos-init-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100,
+                    easing: 'ease-out-cubic'
+                });
+            });
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script id="theme-toggle-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                const themeToggle = document.getElementById('theme-toggle');
+                const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+                const body = document.body;
+
+                // Check for saved theme preference or default to 'light'
+                const currentTheme = localStorage.getItem('theme') || 'light';
+
+                // Apply the saved theme
+                if (currentTheme === 'dark') {
+                    body.setAttribute('data-theme', 'dark');
+                    updateIcons('dark');
+                } else {
+                    body.removeAttribute('data-theme');
+                    updateIcons('light');
+                }
+
+                function updateIcons(theme) {
+                    const iconClass = theme === 'dark' ? 'ri-sun-line' : 'ri-moon-line';
+                    themeIcon.className = `${iconClass} text-xl nav-text`;
+                    mobileThemeIcon.className = `${iconClass} text-lg nav-text`;
+                }
+
+                function toggleTheme() {
+                    const currentTheme = body.getAttribute('data-theme');
+
+                    if (currentTheme === 'dark') {
+                        body.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        updateIcons('light');
+                    } else {
+                        body.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        updateIcons('dark');
+                    }
+
+                    // Add a subtle animation effect
+                    body.style.transition = 'all 0.3s ease';
+                    setTimeout(() => {
+                        body.style.transition = '';
+                    }, 300);
+                }
+
+                // Add event listeners
+                themeToggle.addEventListener('click', toggleTheme);
+                mobileThemeToggle.addEventListener('click', toggleTheme);
+
+                // Add keyboard support
+                themeToggle.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleTheme();
+                    }
+                });
+
+                mobileThemeToggle.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleTheme();
+                    }
+                });
+            });
+    </script>
+
+    <!-- Classical Animation Enhancements -->
+    <script id="classical-animations-script">
+            document.addEventListener('DOMContentLoaded', function () {
+                // Scroll Progress Indicator
+                const scrollIndicator = document.getElementById('scroll-indicator');
+
+                function updateScrollProgress() {
+                    const scrollTop = window.pageYOffset;
+                    const docHeight = document.body.scrollHeight - window.innerHeight;
+                    const scrollPercent = scrollTop / docHeight;
+                    scrollIndicator.style.transform = `scaleX(${scrollPercent})`;
+                }
+
+                window.addEventListener('scroll', updateScrollProgress);
+
+                // Add staggered fade-in animations
+                const fadeElements = document.querySelectorAll('.fade-in-up');
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.style.animationDelay = `${index * 0.1}s`;
+                        element.classList.add('fade-in-up');
+                    }, index * 100);
+                });
+
+                // Enhanced ink blot effects
+                const inkBlots = document.querySelectorAll('.ink-blot');
+                inkBlots.forEach(blot => {
+                    blot.addEventListener('mouseenter', function () {
+                        this.style.transform = 'scale(1.02)';
+                    });
+
+                    blot.addEventListener('mouseleave', function () {
+                        this.style.transform = 'scale(1)';
+                    });
+                });
+
+                // Add parallax effect to hero section
+                const hero = document.getElementById('home');
+                if (hero) {
+                    window.addEventListener('scroll', () => {
+                        const scrolled = window.pageYOffset;
+                        const rate = scrolled * -0.3;
+                        hero.style.transform = `translateY(${rate}px)`;
+                    });
+                }
+
+                // Add elegant hover effects to cards
+                const cards = document.querySelectorAll('.elegant-hover');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                        this.style.boxShadow = '0 20px 40px rgba(189, 147, 249, 0.15)';
+                    });
+
+                    card.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = '';
+                    });
+                });
+            });
+    </script>
+</body>
+
+</html>
